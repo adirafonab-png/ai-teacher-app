@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Patrick+Hand&family=Nunito:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Chalkboard Theme - Light mode (still dark-themed for chalkboard) */
+    --background: 0.18 0.025 155;
+    --foreground: 0.95 0.02 90;
+    --card: 0.22 0.03 155;
+    --card-foreground: 0.95 0.02 90;
+    --popover: 0.22 0.03 155;
+    --popover-foreground: 0.95 0.02 90;
+    --primary: 0.88 0.12 90;
+    --primary-foreground: 0.15 0.03 155;
+    --secondary: 0.28 0.04 155;
+    --secondary-foreground: 0.92 0.02 90;
+    --muted: 0.25 0.03 155;
+    --muted-foreground: 0.72 0.04 90;
+    --accent: 0.82 0.08 350;
+    --accent-foreground: 0.15 0.03 155;
+    --destructive: 0.65 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.35 0.04 155;
+    --input: 0.28 0.04 155;
+    --ring: 0.88 0.12 90;
+
+    /* Chalk colors */
+    --chalk-white: 0.96 0.01 90;
+    --chalk-yellow: 0.92 0.14 95;
+    --chalk-pink: 0.85 0.12 350;
+    --chalk-blue: 0.78 0.1 220;
+    --chalk-green: 0.82 0.12 145;
+    --chalk-orange: 0.82 0.14 55;
+
+    /* Wood frame */
+    --wood-dark: 0.38 0.08 55;
+    --wood-mid: 0.52 0.1 55;
+    --wood-light: 0.65 0.1 60;
+
+    /* Board surface */
+    --board-bg: 0.2 0.04 155;
+    --board-dark: 0.15 0.03 155;
+
+    /* Chart colors */
+    --chart-1: 0.88 0.12 90;
+    --chart-2: 0.82 0.08 350;
+    --chart-3: 0.78 0.1 220;
+    --chart-4: 0.82 0.12 145;
+    --chart-5: 0.82 0.14 55;
+
+    --sidebar: 0.15 0.03 155;
+    --sidebar-foreground: 0.95 0.02 90;
+    --sidebar-primary: 0.88 0.12 90;
+    --sidebar-primary-foreground: 0.15 0.03 155;
+    --sidebar-accent: 0.25 0.04 155;
+    --sidebar-accent-foreground: 0.92 0.02 90;
+    --sidebar-border: 0.35 0.04 155;
+    --sidebar-ring: 0.88 0.12 90;
+  }
+
+  .dark {
+    --background: 0.14 0.025 155;
+    --foreground: 0.95 0.02 90;
+    --card: 0.18 0.03 155;
+    --card-foreground: 0.95 0.02 90;
+    --popover: 0.2 0.03 155;
+    --popover-foreground: 0.95 0.02 90;
+    --primary: 0.88 0.12 90;
+    --primary-foreground: 0.15 0.03 155;
+    --secondary: 0.22 0.04 155;
+    --secondary-foreground: 0.92 0.02 90;
+    --muted: 0.22 0.03 155;
+    --muted-foreground: 0.65 0.04 90;
+    --accent: 0.82 0.08 350;
+    --accent-foreground: 0.15 0.03 155;
+    --destructive: 0.65 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.3 0.04 155;
+    --input: 0.25 0.04 155;
+    --ring: 0.88 0.12 90;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    background: oklch(0.18 0.025 155);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .chalk-text {
+    font-family: 'Caveat', cursive;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.15), 1px 1px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  .chalk-heading {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.2), 1px 1px 3px rgba(0, 0, 0, 0.5);
+    letter-spacing: 0.02em;
+  }
+
+  .chalk-yellow {
+    color: oklch(var(--chalk-yellow));
+  }
+
+  .chalk-pink {
+    color: oklch(var(--chalk-pink));
+  }
+
+  .chalk-white {
+    color: oklch(var(--chalk-white));
+  }
+
+  .chalk-green {
+    color: oklch(var(--chalk-green));
+  }
+
+  .chalk-orange {
+    color: oklch(var(--chalk-orange));
+  }
+
+  .board-surface {
+    background: oklch(0.2 0.04 155);
+    background-image:
+      radial-gradient(ellipse at 20% 30%, oklch(0.22 0.04 155 / 0.6) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, oklch(0.18 0.03 155 / 0.6) 0%, transparent 50%);
+  }
+
+  .wood-frame {
+    border: 8px solid oklch(0.45 0.09 55);
+    box-shadow:
+      inset 0 0 0 2px oklch(0.6 0.1 60),
+      inset 0 0 0 4px oklch(0.35 0.07 50),
+      0 4px 20px rgba(0, 0, 0, 0.5),
+      0 8px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+  }
+
+  .wood-frame-sm {
+    border: 5px solid oklch(0.45 0.09 55);
+    box-shadow:
+      inset 0 0 0 1px oklch(0.6 0.1 60),
+      inset 0 0 0 2px oklch(0.35 0.07 50),
+      0 2px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+  }
+
+  .chalk-btn {
+    font-family: 'Caveat', cursive;
+    font-size: 1.1rem;
+    font-weight: 600;
+    min-height: 44px;
+    padding: 0.5rem 1.25rem;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+  }
+
+  .chalk-btn-primary {
+    background: oklch(0.88 0.12 90 / 0.15);
+    border: 2px solid oklch(0.88 0.12 90 / 0.7);
+    color: oklch(0.92 0.14 95);
+    text-shadow: 0 0 8px oklch(0.92 0.14 95 / 0.4);
+  }
+
+  .chalk-btn-primary:hover {
+    background: oklch(0.88 0.12 90 / 0.25);
+    border-color: oklch(0.92 0.14 95);
+    box-shadow: 0 0 12px oklch(0.88 0.12 90 / 0.3);
+  }
+
+  .chalk-btn-primary:active {
+    transform: scale(0.97);
+  }
+
+  .chalk-btn-secondary {
+    background: oklch(0.96 0.01 90 / 0.1);
+    border: 2px solid oklch(0.96 0.01 90 / 0.5);
+    color: oklch(0.96 0.01 90);
+  }
+
+  .chalk-btn-secondary:hover {
+    background: oklch(0.96 0.01 90 / 0.18);
+    border-color: oklch(0.96 0.01 90 / 0.8);
+  }
+
+  .chalk-btn-pink {
+    background: oklch(0.82 0.08 350 / 0.15);
+    border: 2px solid oklch(0.82 0.08 350 / 0.7);
+    color: oklch(0.88 0.1 350);
+    text-shadow: 0 0 8px oklch(0.82 0.08 350 / 0.4);
+  }
+
+  .chalk-btn-pink:hover {
+    background: oklch(0.82 0.08 350 / 0.25);
+    border-color: oklch(0.88 0.1 350);
+    box-shadow: 0 0 12px oklch(0.82 0.08 350 / 0.3);
+  }
+
+  .chalk-input {
+    font-family: 'Caveat', cursive;
+    font-size: 1.15rem;
+    background: oklch(0.15 0.03 155 / 0.8);
+    border: 2px solid oklch(0.96 0.01 90 / 0.4);
+    color: oklch(0.96 0.01 90);
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .chalk-input::placeholder {
+    color: oklch(0.65 0.03 90 / 0.7);
+    font-style: italic;
+  }
+
+  .chalk-input:focus {
+    border-color: oklch(0.88 0.12 90 / 0.8);
+    box-shadow: 0 0 10px oklch(0.88 0.12 90 / 0.2);
+  }
+
+  .teacher-card {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .teacher-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .teacher-card.active {
+    box-shadow: 0 0 20px oklch(0.88 0.12 90 / 0.4), 0 0 40px oklch(0.88 0.12 90 / 0.2);
+  }
+
+  .chalk-divider {
+    border: none;
+    border-top: 2px dashed oklch(0.96 0.01 90 / 0.2);
+    margin: 1rem 0;
+  }
+
+  .chalk-list li::before {
+    content: '— ';
+    color: oklch(0.88 0.12 90);
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.02); }
+  }
+
+  .animate-chalk-write {
+    animation: chalk-write 0.5s ease-out forwards;
+  }
+
+  @keyframes chalk-write {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tab-active {
+    background: oklch(0.88 0.12 90 / 0.15);
+    border-bottom: 3px solid oklch(0.88 0.12 90);
+    color: oklch(0.92 0.14 95);
+  }
+
+  .scrollbar-chalk::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-chalk::-webkit-scrollbar-track {
+    background: oklch(0.15 0.03 155);
+  }
+
+  .scrollbar-chalk::-webkit-scrollbar-thumb {
+    background: oklch(0.35 0.05 155);
+    border-radius: 3px;
+  }
+
+  .scrollbar-chalk::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.45 0.06 155);
+  }
+
+  /* Sound-wave equaliser bars for speaking indicator */
+  .sound-wave {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+  }
+
+  .sound-wave-bar {
+    width: 3px;
+    border-radius: 2px;
+    transform-origin: bottom;
+    animation: sound-bar 0.8s ease-in-out infinite alternate;
+  }
+
+  .sound-wave-bar:nth-child(1) { animation-delay: 0s;    animation-duration: 0.7s; }
+  .sound-wave-bar:nth-child(2) { animation-delay: 0.15s; animation-duration: 0.9s; }
+  .sound-wave-bar:nth-child(3) { animation-delay: 0.3s;  animation-duration: 0.75s; }
+
+  @keyframes sound-bar {
+    from { height: 4px; opacity: 0.6; }
+    to   { height: 14px; opacity: 1; }
+  }
+
+  /* Blinking chalk cursor */
+  .chalk-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: currentColor;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink-cursor 0.7s step-end infinite;
+  }
+
+  @keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Chalk-style icon button */
+  .chalk-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    background: oklch(0.96 0.01 90 / 0.08);
+    border: 1.5px solid oklch(0.96 0.01 90 / 0.3);
+    color: oklch(0.96 0.01 90 / 0.8);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+
+  .chalk-icon-btn:hover {
+    background: oklch(0.96 0.01 90 / 0.18);
+    border-color: oklch(0.96 0.01 90 / 0.6);
+    color: oklch(0.96 0.01 90);
+  }
+
+  .chalk-icon-btn:active {
+    transform: scale(0.93);
+  }
+
+  .chalk-icon-btn.active {
+    background: oklch(0.88 0.12 90 / 0.15);
+    border-color: oklch(0.88 0.12 90 / 0.5);
+    color: oklch(0.92 0.14 95);
+  }
+
+  .animate-chalk-appear {
+    animation: chalk-write 0.5s ease-out forwards;
+  }
+}
